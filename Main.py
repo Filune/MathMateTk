@@ -3,6 +3,9 @@ from tkinter import *
 class Main:
     
     def __init__(self, master):
+        
+        self.supported_exponent_length = 58
+        
         frame = Frame(master)
         self.master = master
         
@@ -20,7 +23,7 @@ class Main:
         for i in range(9):
             self.buttons[i] = Button(frame, text=i, command=lambda text=str(i+1): self.put_on_display(text))
            
-        self.display = Label(frame, text="")   
+        self.display = Label(frame, text="", wraplength=170, height=3)   
         
         frame.pack()
         self.display.grid(row=0, columnspan=4)
@@ -46,7 +49,7 @@ class Main:
         self.clearAll.grid(row=3, column=3)
         
         self.delete = Button(frame, text="<", command=self.delete)
-        self.delete.grid(row=2, column=3, sticky=E)
+        self.delete.grid(row=2, column=3)
         
     def put_on_display(self, text):
         current_text = self.display.cget("text")
@@ -55,9 +58,9 @@ class Main:
         if current_text:
             last_char = current_text[-1]
             
-            if current_text in ["Error", "", "Result > ∣∣10^19∣∣", "Division by Zero not allowed!", "Numbers are too big!"]:
+            if current_text in ["Error", "", "Result > ∣∣10^" + str(self.supported_exponent_length) + "∣∣", "Division by Zero not allowed!", "Numbers are too big!"]:
                 current_text = ""
-            if len(current_text) > 19:
+            if len(current_text) > self.supported_exponent_length:
                 self.display.config(text="Numbers are too big!")
                 return
         
@@ -75,8 +78,8 @@ class Main:
         
         try:
             result = eval(current_text)
-            if result > 10**19 or result < -(10**19):
-                self.display.config(text="Result > ∣∣10^19∣∣")
+            if result > 10**self.supported_exponent_length or result < -(10**self.supported_exponent_length):
+                self.display.config(text="Result > ∣∣10^" + str(self.supported_exponent_length) + "∣∣")
             else:
                 self.display.config(text=str(result))
         except (SyntaxError, ValueError):
@@ -87,7 +90,7 @@ class Main:
     def delete(self):
         current_text = self.display.cget("text")
         
-        if current_text in ["Error", "", "Result > ∣∣10^19∣∣", "Division by Zero not allowed!", "Numbers are too big!"]:
+        if current_text in ["Error", "", "Result > ∣∣10^" + str(self.supported_exponent_length) + "∣∣", "Numbers are too big!"]:
             self.display.config(text="")
         else:
             self.display.config(text=current_text[:-1])
@@ -107,7 +110,7 @@ def center_window(window):
     window.update()
 
 root = Tk()
-root.geometry("200x170")
+root.geometry("200x200")
 center_window(root)
 calc = Main(root)
 root.mainloop()
