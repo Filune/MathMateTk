@@ -10,7 +10,7 @@ def launch():
     icon_path = os.path.join(script_dir, 'images/calculator_icon.png')
 
     root = Tk()
-    root.geometry("200x200")
+    root.geometry("178x180")
     center_window(root)
     MathMateTk(root)
     root.title("MathMateTk")

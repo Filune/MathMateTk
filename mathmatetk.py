@@ -12,6 +12,8 @@ class MathMateTk:
         """
         
         self.supported_exponent_length = 58
+        self.button_height = 1
+        self.button_width = 5
         self.master = master
         frame = Frame(self.master)
         
@@ -21,54 +23,56 @@ class MathMateTk:
         self.draw_number_buttons_on_screen()
         self.assign_commands_to_special_buttons(frame)
         frame.pack()
-        
+    
     def define_operation_buttons(self, frame):
         """Define the operation buttons for the calculator."""
-        self.plus = Button(frame, text="+", command=lambda text=str("+"): self.put_on_display(text))
-        self.minus = Button(frame, text="-", command=lambda text=str("-"): self.put_on_display(text))
-        self.multiply = Button(frame, text="*", command=lambda text=str("*"): self.put_on_display(text))
-        self.divide = Button(frame, text="/", command=lambda text=str("/"): self.put_on_display(text))
-        self.dot = Button(frame, text=".", command=lambda text=str("."): self.put_on_display(text))
-        self.power_of = Button(frame, text="^", command=lambda text=str("**"): self.put_on_display(text))
-    
+        self.plus = Button(frame, text="+", command=lambda text=str("+"): self.put_on_display(text), width=self.button_width, height=self.button_height)
+        self.minus = Button(frame, text="-", command=lambda text=str("-"): self.put_on_display(text), width=self.button_width, height=self.button_height)
+        self.multiply = Button(frame, text="*", command=lambda text=str("*"): self.put_on_display(text), width=self.button_width, height=self.button_height)
+        self.divide = Button(frame, text="/", command=lambda text=str("/"): self.put_on_display(text), width=self.button_width, height=self.button_height)
+        self.dot = Button(frame, text=".", command=lambda text=str("."): self.put_on_display(text), width=self.button_width, height=self.button_height)
+        self.power_of = Button(frame, text="^", command=lambda text=str("**"): self.put_on_display(text), width=self.button_width, height=self.button_height)
+
     def define_number_buttons(self, frame):
         """Define the number buttons for the calculator."""
         self.buttons = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-        self.zero = Button(frame, text="0", command=lambda text=str("0"): self.put_on_display(text))
+        self.zero = Button(frame, text="0", command=lambda text=str("0"): self.put_on_display(text), width=self.button_width, height=self.button_height)
         for i in range(9):
-            self.buttons[i] = Button(frame, text=i, command=lambda text=str(i+1): self.put_on_display(text))
+            self.buttons[i] = Button(frame, text=i, command=lambda text=str(i+1): self.put_on_display(text), width=self.button_width, height=self.button_height)
+
     
     def draw_operation_buttons_on_screen(self, frame):
         """Draw the operation buttons on the screen."""
-        self.display = Label(frame, text="", wraplength=170, height=3)   
-        self.display.grid(row=0, columnspan=4)
-        self.plus.grid(row=1)
-        self.minus.grid(row=1, column=1)
-        self.multiply.grid(row=1, column=2)
-        self.divide.grid(row=5, column=2)
-        self.dot.grid(row=5, column=1)
-        self.power_of.grid(row=1, column=3)
+        self.display = Label(frame, text="", wraplength=170, height=3)
+        self.display.grid(row=0, columnspan=4, sticky="ew")
+        self.display.config(bg="#EDEADE")
+        self.plus.grid(row=1, column=0, sticky="ew")
+        self.minus.grid(row=1, column=1, sticky="ew")
+        self.multiply.grid(row=1, column=2, sticky="ew")
+        self.divide.grid(row=5, column=2, sticky="ew")
+        self.dot.grid(row=5, column=1, sticky="ew")
+        self.power_of.grid(row=1, column=3, sticky="ew")
 
     def draw_number_buttons_on_screen(self):
         """Draw the number buttons on the screen."""
         button_index = 0
-        self.zero.grid(row=5)
+        self.zero.grid(row=5, sticky="ew")
         for row in range(2, 5):
             for column in range(3):
-                self.buttons[button_index].grid(row=row, column=column)
+                self.buttons[button_index].grid(row=row, column=column, sticky="ew")
                 self.buttons[button_index].config(text=str(button_index + 1))
                 button_index += 1
                 
     def assign_commands_to_special_buttons(self, frame):
         """Assign commands to the special buttons."""
-        self.equal = Button(frame, text="=", command=self.equal)
-        self.equal.grid(row=5, column=3)
+        self.equal = Button(frame, text="=", command=self.equal, width=self.button_width, height=self.button_height)
+        self.equal.grid(row=5, column=3, sticky="ew")
         
-        self.clearAll = Button(frame, text="C", command=self.clearAll)
-        self.clearAll.grid(row=3, column=3)
+        self.clearAll = Button(frame, text="C", command=self.clearAll, width=self.button_width, height=self.button_height)
+        self.clearAll.grid(row=3, column=3, sticky="ew")
         
-        self.delete = Button(frame, text="<", command=self.delete)
-        self.delete.grid(row=2, column=3)
+        self.delete = Button(frame, text="<", command=self.delete, width=self.button_width, height=self.button_height)
+        self.delete.grid(row=2, column=3, sticky="ew")
     
     def put_on_display(self, text):
         """Append the given text to the display."""
