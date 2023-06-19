@@ -1,6 +1,6 @@
 # MathMateTk
 MathMateTk is a simple calculator GUI application developed using the Tkinter library in Python. It serves as a practice project for creating a graphical user interface and handling user input.
-![Alt text](preview.png)
+![Image showing a preview of the MathMateTk application.](images/preview.png)
 
 ## Key Features
 * Graphical User Interface: MathMateTk provides a user-friendly interface with buttons and labels organised within a window. It demonstrates the design and layout of GUI elements using Tkinter.
