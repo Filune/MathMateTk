@@ -1,14 +1,21 @@
-from tkinter import Tk
+import os
+import sys
+from tkinter import PhotoImage, Tk
 from mathmatetk import MathMateTk
 
 
 def launch():
     """Launches the MathMateTk application."""
+    script_dir = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    icon_path = os.path.join(script_dir, 'images/calculator_icon.png')
+
     root = Tk()
     root.geometry("200x200")
     center_window(root)
     MathMateTk(root)
     root.title("MathMateTk")
+    photo = PhotoImage(file=icon_path)
+    root.iconphoto(False, photo)
     root.mainloop()
     
 def center_window(window):
