@@ -1,8 +1,7 @@
 import os
 import sys
 from tkinter import PhotoImage, Tk
-from mathmatetkmac import MathMateTkMac
-from mathmatetkwindows import MathMateTkWindows
+from mathmatetk import MathMateTk
 
 
 def launch():
@@ -14,11 +13,10 @@ def launch():
     
     if sys.platform.startswith('darwin'):
         root.geometry("200x200")
-        MathMateTkMac(root)
     else:
         root.geometry("178x180")
-        MathMateTkWindows(root)
-
+    
+    MathMateTk(root)
     center_window(root)
     root.title("MathMateTk")
     photo = PhotoImage(file=icon_path)

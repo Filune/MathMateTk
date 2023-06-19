@@ -1,7 +1,8 @@
+import sys
 from tkinter import Button, Frame, Label
 
 
-class MathMateTkWindows:
+class MathMateTk:
     """A simple calculator application using Tkinter, Windows UI."""
     
     def __init__(self, master):
@@ -12,8 +13,6 @@ class MathMateTkWindows:
         """
         
         self.supported_exponent_length = 58
-        self.button_height = 1
-        self.button_width = 5
         self.master = master
         frame = Frame(self.master)
         
@@ -26,19 +25,19 @@ class MathMateTkWindows:
     
     def define_operation_buttons(self, frame):
         """Define the operation buttons for the calculator."""
-        self.plus = Button(frame, text="+", command=lambda text=str("+"): self.put_on_display(text), width=self.button_width, height=self.button_height)
-        self.minus = Button(frame, text="-", command=lambda text=str("-"): self.put_on_display(text), width=self.button_width, height=self.button_height)
-        self.multiply = Button(frame, text="*", command=lambda text=str("*"): self.put_on_display(text), width=self.button_width, height=self.button_height)
-        self.divide = Button(frame, text="/", command=lambda text=str("/"): self.put_on_display(text), width=self.button_width, height=self.button_height)
-        self.dot = Button(frame, text=".", command=lambda text=str("."): self.put_on_display(text), width=self.button_width, height=self.button_height)
-        self.power_of = Button(frame, text="^", command=lambda text=str("**"): self.put_on_display(text), width=self.button_width, height=self.button_height)
+        self.plus = Button(frame, text="+", command=lambda text=str("+"): self.put_on_display(text), width=self.get_button_width(), height=self.get_button_height())
+        self.minus = Button(frame, text="-", command=lambda text=str("-"): self.put_on_display(text), width=self.get_button_width(), height=self.get_button_height())
+        self.multiply = Button(frame, text="*", command=lambda text=str("*"): self.put_on_display(text), width=self.get_button_width(), height=self.get_button_height())
+        self.divide = Button(frame, text="/", command=lambda text=str("/"): self.put_on_display(text), width=self.get_button_width(), height=self.get_button_height())
+        self.dot = Button(frame, text=".", command=lambda text=str("."): self.put_on_display(text), width=self.get_button_width(), height=self.get_button_height())
+        self.power_of = Button(frame, text="^", command=lambda text=str("**"): self.put_on_display(text), width=self.get_button_width(), height=self.get_button_height())
 
     def define_number_buttons(self, frame):
         """Define the number buttons for the calculator."""
         self.buttons = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-        self.zero = Button(frame, text="0", command=lambda text=str("0"): self.put_on_display(text), width=self.button_width, height=self.button_height)
+        self.zero = Button(frame, text="0", command=lambda text=str("0"): self.put_on_display(text), width=self.get_button_width(), height=self.get_button_height())
         for i in range(9):
-            self.buttons[i] = Button(frame, text=i, command=lambda text=str(i+1): self.put_on_display(text), width=self.button_width, height=self.button_height)
+            self.buttons[i] = Button(frame, text=i, command=lambda text=str(i+1): self.put_on_display(text), width=self.get_button_width(), height=self.get_button_height())
 
     
     def draw_operation_buttons_on_screen(self, frame):
@@ -65,13 +64,13 @@ class MathMateTkWindows:
                 
     def assign_commands_to_special_buttons(self, frame):
         """Assign commands to the special buttons."""
-        self.equal = Button(frame, text="=", command=self.equal, width=self.button_width, height=self.button_height)
+        self.equal = Button(frame, text="=", command=self.equal, width=self.get_button_width(), height=self.get_button_height())
         self.equal.grid(row=5, column=3, sticky="ew")
         
-        self.clearAll = Button(frame, text="C", command=self.clearAll, width=self.button_width, height=self.button_height)
+        self.clearAll = Button(frame, text="C", command=self.clearAll, width=self.get_button_width(), height=self.get_button_height())
         self.clearAll.grid(row=3, column=3, sticky="ew")
         
-        self.delete = Button(frame, text="<", command=self.delete, width=self.button_width, height=self.button_height)
+        self.delete = Button(frame, text="<", command=self.delete, width=self.get_button_width(), height=self.get_button_height())
         self.delete.grid(row=2, column=3, sticky="ew")
     
     def put_on_display(self, text):
@@ -124,3 +123,17 @@ class MathMateTkWindows:
     def clearAll(self):
         """Clear the display."""
         self.display.config(text="")
+        
+    def get_button_width(self):
+        """Get the button width based on the operating system."""
+        if sys.platform.startswith('darwin'):
+            return None
+        else:
+            return 5
+
+    def get_button_height(self):
+        """Get the button height based on the operating system."""
+        if sys.platform.startswith('darwin'):
+            return None
+        else:
+            return 1
