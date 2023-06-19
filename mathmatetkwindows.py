@@ -1,8 +1,8 @@
 from tkinter import Button, Frame, Label
 
 
-class MathMateTk:
-    """A simple calculator application using Tkinter."""
+class MathMateTkWindows:
+    """A simple calculator application using Tkinter, Windows UI."""
     
     def __init__(self, master):
         """Initialize the MathMateTk calculator.
@@ -124,4 +124,3 @@ class MathMateTk:
     def clearAll(self):
         """Clear the display."""
         self.display.config(text="")
-
