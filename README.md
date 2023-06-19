@@ -9,7 +9,19 @@ MathMateTk is a simple calculator GUI application developed using the Tkinter li
 * Exception Handling: There is some exception handling included, but the main focus is on the graphical user interface.
 
 ## Usage
-To use MathMateTk, simply run the application. The GUI window will appear, displaying buttons for numbers, mathematical operations, and a label for the display. Click on the buttons to enter numbers and perform calculations. The result will be shown in the display label.
+To use MathMateTk, you have two options for downloading and running the application.
+1. Run with Python Interpreter:
+    * Make sure you have Python 3 installed on your system.
+    * Clone or download the MathMateTk repository from GitHub.
+    * Open a terminal or command prompt and navigate to the downloaded MathMateTk directory.
+    * Run the following command to start the application: `python main.py`.
+    * The MathMateTk graphical user interface will be displayed, allowing you to start using the application.
+2. Download the Release:
+    * Visit this repository's release page here on GitHub.
+    * Choose the desired release version and download the corresponding executable file for your operating system.
+        * Windows: After downloading, double-click the executable file to launch the MathMateTk application. 
+        * Mac: Right click on MathMateTk and click "Open" from the menu. 
+    * The MathMateTk graphical user interface will be displayed, allowing you to start using the application.
 
 ## Dependencies
 MathMateTk relies on Python 3 and the Tkinter library, which is a standard GUI toolkit for Python. Ensure that Tkinter is installed before running the application.
