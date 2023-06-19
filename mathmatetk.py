@@ -44,7 +44,7 @@ class MathMateTk:
         """Draw the operation buttons on the screen."""
         self.display = Label(frame, text="", wraplength=170, height=3)
         self.display.grid(row=0, columnspan=4, sticky="ew")
-        self.display.config(bg="#EDEADE")
+        self.display.config(bg="#EDEADE", fg="black")
         self.plus.grid(row=1, column=0, sticky="ew")
         self.minus.grid(row=1, column=1, sticky="ew")
         self.multiply.grid(row=1, column=2, sticky="ew")
