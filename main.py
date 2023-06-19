@@ -10,9 +10,14 @@ def launch():
     icon_path = os.path.join(script_dir, 'images/calculator_icon.png')
 
     root = Tk()
-    root.geometry("200x200")
-    center_window(root)
+    
+    if sys.platform.startswith('darwin'):
+        root.geometry("200x200")
+    else:
+        root.geometry("178x180")
+    
     MathMateTk(root)
+    center_window(root)
     root.title("MathMateTk")
     photo = PhotoImage(file=icon_path)
     root.iconphoto(False, photo)
